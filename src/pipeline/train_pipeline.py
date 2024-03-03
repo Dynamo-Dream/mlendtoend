@@ -3,11 +3,12 @@ import os
 import pandas as pd
 from src.exception import CustomException
 from src.utils import load_object
-# Get the path of the 'src' directory
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+from pathlib import Path
+
+pkl_path = Path(__file__).parents[1]
 
 # Add the 'src' directory to the Python path
-sys.path.append(src_path)
+sys.path.append(pkl_path)
 class PredictPipeline:
     def __init__(self):
         pass
