@@ -5,10 +5,10 @@ from src.exception import CustomException
 from src.utils import load_object
 from pathlib import Path
 
-pkl_path = Path(__file__).parents[1]
+project_dir = Path(__file__).parents[1]
 
 # Add the 'src' directory to the Python path
-sys.path.append(pkl_path)
+sys.path.append(project_dir)
 class PredictPipeline:
     def __init__(self):
         pass
@@ -16,8 +16,8 @@ class PredictPipeline:
 
     def predict(self,feature):
         try:
-            model_path = 'artifacts\model.pkl'
-            preprocessor_path = 'artifacts\preprocessor.pkl'
+            model_path = project_dir / 'artifacts' / 'model.pkl'
+            preprocessor_path = project_dir / 'artifacts' / 'preprocessor.pkl'
             model = load_object(model_path)
             preprocessor = load_object(preprocessor_path)
             data_scaled = preprocessor.transform(feature)
