@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 from src.pipeline.train_pipeline import CustomData, PredictPipeline
+from pathlib import Path
 
+pkl_path = Path(__file__).parents[1]
 st.set_page_config(layout="wide")
 
 def main():
