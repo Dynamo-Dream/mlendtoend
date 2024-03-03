@@ -47,8 +47,20 @@ class ModelTrainer:
                 "CatBoosting Regressor" : CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor" : AdaBoostRegressor()
             }
+            param_grids = {
+    "Random Forest": {'n_estimators': [100, 200], 'max_depth': [5, 10],'criterion':['squared_error','friedman_mse']},
+    
+    "Gradient Boosting": {'n_estimators': [100, 200], 'max_depth': [3, 5], 'learning_rate': [0.1, 0.01]},
+    "Linear Regression": {},  # No hyperparameters to tune for Linear Regression
+    "K-Neigbours Regressor": {'n_neighbors': [3, 5, 7]},
+    "XGBRegressor": {'n_estimators': [100, 200], 'max_depth': [3, 5], 'learning_rate': [0.1, 0.01]},
+    "CatBoosting Regressor": {'iterations': [100, 200], 'depth': [4, 6]},
+    "AdaBoost Regressor": {'n_estimators': [50, 100], 'learning_rate': [0.1, 0.01]},
+    "Decision Tree": {'max_depth': [5, 10]}
+}
 
-            model_report:dict = evaluate_models(x_train,y_train,x_test,y_test,models)
+
+            model_report:dict = evaluate_models(x_train,y_train,x_test,y_test,models,param=param_grids)
 
             best_model_score = max(sorted(model_report.values()))
 
